@@ -320,6 +320,14 @@
   .modal-close{margin-top:6px;font-size:0.85rem;color:var(--muted);cursor:pointer;background:none;border:none;}
   .modal-close:hover{color:var(--text);}
 
+  /* TOUCH ACTIVE — mirrors hover states for tap feedback on mobile */
+  .btn.touch-active, .cta-pill.touch-active{transform:translateY(-2px) scale(1.03);}
+  .btn-primary.touch-active{background:var(--gold-soft);box-shadow:0 8px 20px rgba(217,169,78,0.35);}
+  .cta-pill.touch-active{box-shadow:0 8px 18px rgba(240,180,41,0.35);}
+  .gather-row.touch-active{background:rgba(217,169,78,0.1);}
+  .loc-card.touch-active{border-color:var(--teal);}
+  .media-item.touch-active{transform:translateX(3px);}
+
   /* FOOTER */
   footer{padding:64px 0 32px;border-top:1px solid var(--line);}
   .footer-grid{display:grid;grid-template-columns:1fr;gap:36px;}
@@ -345,7 +353,17 @@
       <a href="#connect">Connect</a>
     </nav>
     <a href="#connect" class="cta-pill">Join Us on WhatsApp</a>
+    <div class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </div>
   </div>
+  <nav class="mobile-menu" id="mobileMenu">
+    <a href="#about-preview" onclick="closeMobileMenu()">About</a>
+    <a href="#media" onclick="closeMobileMenu()">Sermons</a>
+    <a href="#connect" onclick="closeMobileMenu()">Events</a>
+    <a href="#giving-wrap" onclick="closeMobileMenu()">Giving</a>
+    <a href="#connect" onclick="closeMobileMenu()">Connect</a>
+  </nav>
 </header>
 
 <section class="hero" id="top">
@@ -761,6 +779,22 @@
     ].join('\\n');
     const subject = 'First Timer Card - ' + v('ft_name');
     window.location.href = 'mailto:blwrivcoh@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  });
+</script>
+<script>
+  function toggleMobileMenu(){
+    document.getElementById('hamburgerBtn').classList.toggle('open');
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+  function closeMobileMenu(){
+    document.getElementById('hamburgerBtn').classList.remove('open');
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // TOUCH HOVER FEEL — replicate hover/active states on touch devices
+  document.querySelectorAll('.btn, .cta-pill, .gather-row, .loc-card, .media-item').forEach(function(el){
+    el.addEventListener('touchstart', function(){ el.classList.add('touch-active'); }, {passive:true});
+    el.addEventListener('touchend', function(){ setTimeout(function(){ el.classList.remove('touch-active'); }, 150); }, {passive:true});
   });
 </script>
 </body>
