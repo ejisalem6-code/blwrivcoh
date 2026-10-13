@@ -35,10 +35,24 @@ function closeFirstTimerModal(){
   document.getElementById('firstTimerModal').classList.remove('open');
 }
 
+// FOUNDATION SCHOOL MODAL + FORM SUBMIT
+function showFoundationModal(e){
+  if(e) e.preventDefault();
+  document.getElementById('foundationModal').classList.add('open');
+  return false;
+}
+function closeFoundationModal(){
+  document.getElementById('foundationModal').classList.remove('open');
+}
+
 document.addEventListener('DOMContentLoaded', function(){
   var gm = document.getElementById('givingModal');
   if(gm){
     gm.addEventListener('click', function(e){ if(e.target === this){ closeGivingModal(); } });
+  }
+  var fsm = document.getElementById('foundationModal');
+  if(fsm){
+    fsm.addEventListener('click', function(e){ if(e.target === this){ closeFoundationModal(); } });
   }
   var ftm = document.getElementById('firstTimerModal');
   if(ftm){
@@ -71,6 +85,33 @@ document.addEventListener('DOMContentLoaded', function(){
         'How was the service: ' + v('ft_feedback')
       ].join('\n');
       const subject = 'First Timer Card - ' + v('ft_name');
+      window.location.href = 'mailto:blwrivcoh@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    });
+  }
+
+  if(window.location.hash === '#foundation-school' && document.getElementById('foundationModal')){
+    setTimeout(function(){ showFoundationModal(); }, 350);
+  }
+
+  var fsForm = document.getElementById('foundationForm');
+  if(fsForm){
+    fsForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      const v = id => (document.getElementById(id)||{}).value || '-';
+      const body = [
+        'LOVEWORLD FOUNDATION SCHOOL - ONLINE REGISTRATION',
+        '',
+        'Full Name: ' + v('fs_title') + ' ' + v('fs_name'),
+        'Address: ' + v('fs_address'),
+        'Email Address: ' + v('fs_email'),
+        'Active WhatsApp Mobile Number: ' + v('fs_whatsapp'),
+        'Active Call Line: ' + v('fs_callline'),
+        'Church Info: ' + v('fs_churchinfo'),
+        'Study Availability - Days: ' + v('fs_days'),
+        'Study Availability - Time: ' + v('fs_time'),
+        'Baptism Status: ' + v('fs_baptism')
+      ].join('\\n');
+      const subject = 'Foundation School Enrollment - ' + v('fs_title') + ' ' + v('fs_name');
       window.location.href = 'mailto:blwrivcoh@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     });
   }

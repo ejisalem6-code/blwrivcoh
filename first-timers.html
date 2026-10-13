@@ -56,7 +56,10 @@
         <div class="ft-acrostic">
           <img src="promise-acrostic.jpg" alt="Our PROMISE acrostic">
         </div>
-        <a href="#" onclick="return showFirstTimerModal(event)" class="btn btn-primary">Tell Us About Yourself</a>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;">
+          <a href="#" onclick="return showFirstTimerModal(event)" class="btn btn-primary">Tell Us About Yourself</a>
+          <a href="now-born-again.pdf" download class="btn btn-outline">Download "Now That You're Born Again"</a>
+        </div>
       </div>
     </div>
   </div>
@@ -127,6 +130,15 @@
         <h4>Media</h4><p>Join this team via WhatsApp</p>
       </a>
     </div>
+  </div>
+</section>
+
+<section id="foundation-school" style="background:var(--surface);scroll-margin-top:80px;">
+  <div class="wrap">
+    <div class="kicker" style="color:var(--gold-soft);">Go deeper</div>
+    <h2 class="section-title" style="margin-bottom:16px;">LoveWorld Foundation School</h2>
+    <p style="color:var(--muted);max-width:52ch;margin-bottom:24px;">Build a strong foundation in the Word — enroll online and we'll guide you from there.</p>
+    <a href="#" onclick="return showFoundationModal(event)" class="btn btn-primary">Enroll in Foundation School</a>
   </div>
 </section>
 
@@ -228,6 +240,64 @@
     </div>
   </div>
 </footer>
+<div class="modal-overlay" id="foundationModal">
+  <div class="modal-box wide">
+    <h3 style="text-align:center;margin-bottom:4px;">LoveWorld Foundation School</h3>
+    <p style="text-align:center;font-size:0.85rem;">Online Registration — please provide the following details to complete your enrollment.</p>
+    <form class="ft-form" id="foundationForm">
+      <label>Full Name (with title preference)</label>
+      <div class="row2">
+        <select id="fs_title">
+          <option>Brother</option>
+          <option>Sister</option>
+        </select>
+        <input type="text" id="fs_name" placeholder="Full name" required>
+      </div>
+
+      <label>Address (include hostel name and room number)</label>
+      <input type="text" id="fs_address" required>
+
+      <label>Email Address</label>
+      <input type="email" id="fs_email" required>
+
+      <label>Active WhatsApp Mobile Number</label>
+      <input type="tel" id="fs_whatsapp" required>
+
+      <label>Active Call Line</label>
+      <input type="tel" id="fs_callline">
+
+      <label>Church Info (your local church, or cell group / Friendship Circle details)</label>
+      <input type="text" id="fs_churchinfo">
+
+      <label>Study Availability — Preferred Days</label>
+      <select id="fs_days">
+        <option>Weekdays</option>
+        <option>Weekends</option>
+        <option>Weekdays & Weekends</option>
+      </select>
+
+      <label>Study Availability — Preferred Time</label>
+      <select id="fs_time">
+        <option>Morning</option>
+        <option>Afternoon</option>
+        <option>Evening</option>
+      </select>
+
+      <label>Baptism Status</label>
+      <select id="fs_baptism">
+        <option>Yes</option>
+        <option>No</option>
+        <option>I want to be Baptised Again</option>
+      </select>
+
+      <div class="modal-btns" style="margin-top:22px;">
+        <button type="submit" class="btn btn-primary" style="justify-content:center;">Submit Enrollment</button>
+        <button type="button" class="modal-close" onclick="closeFoundationModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <script src="script.js?v=2"></script>
 </body>
 </html>
